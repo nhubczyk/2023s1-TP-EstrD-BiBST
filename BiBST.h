@@ -1,4 +1,4 @@
-
+ 
 #include <iostream>
 #include "TiposBasicos.h"
 using namespace std;
@@ -19,7 +19,7 @@ struct BBNode {
 typedef BBNode* BiBST;
 #define EMPTYBB NULL
 
-BBNode* findBBNode  (BBNode* nodo, int x, int y);  
+BBNode* findBBNode(BBNode* nodo, int x, int y);  
 BBNode* insertBBNode(BBNode* nodo, int x, int y);
 
 void    LiberarBiBST(BiBST t);

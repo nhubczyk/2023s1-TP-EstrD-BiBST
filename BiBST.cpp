@@ -8,31 +8,72 @@ using namespace std;
 // Invariante de representación
 //==========================================================================
 /* INV.REP.
-   * En (NodeT (kx, ky) ti td):
-        * todos los elementos de ti son menores que el par de claves (kx, ky).
-        * todos los elementos de td son mayores que el par de claves (kx, ky).
-        * El arbol debe tener 4 nodos hijos desde la raiz, cada uno de los 
-          cuales va a representar un cuadrante, siendo:
-            * x > kx && y > ky expresa al cuadrante NE.
-            * > kx && y <= ky expresa al cuadrante SE.
-            * x <= kx && y > ky expresa al cuadrante NO.
-            * x <= kx && y <= ky expresa al cuadrante SO
-        * ti y td cumplen el invariante de BiBST.
+   * En cada nodo del arbol BiBST existen un par de claves, siendo una coordenada
+     (kx,ky).
+   * La raiz del arbol BiBST posee un array de 4 subarboles que se representan con un
+     cuadrante.
+   * Cada nodo del arbol BiBST representa una celda del tablero mendiante sus coordena
+     das.
+   * Cada nodo del arbol representa mediante un arreglo la cantidad de bolitas de 
+     cada color a insertar en la celda.
+   * Cada par de claves, coordenadas (kx,ky), no pueden repetirse en distintos nodos.
 */
 
 //==========================================================================
 // Implementación
 //==========================================================================
 BBNode* findBBNode(BBNode* nodo, int x, int y) { 
-  return NULL; // REEMPLAZAR
+    if (nodo->kx == x && nodo->ky == y) {
+      return nodo; 
+    }
+    else if (x > nodo->kx && y > nodo->ky) {
+      findBBNode(nodo->hijo[NE], x, y);
+    }
+    else if (x > nodo->kx && y <= nodo->ky) {
+      findBBNode(nodo->hijo[SE], x, y);
+    }
+    else if (x <= nodo->kx && y > nodo->ky) {
+      findBBNode(nodo->hijo[NO], x, y);
+    }
+    else if (x <= nodo->kx && y <= nodo->ky) {
+      findBBNode(nodo->hijo[SO], x, y);
+    }
+    else {
+      return NULL;
+    } 
 }
 
 BBNode* insertBBNode(BBNode* nodo, int x, int y) { 
-  return NULL; // REEMPLAZAR
+    BBNode* anterior;
+    if (nodo->kx == x && nodo->ky == y) {
+      return nodo; 
+    }
+    else if (x > nodo->kx && y > nodo->ky) {
+      anterior = nodo->hijo[NE];
+    }
+    else if (x > nodo->kx && y <= nodo->ky) {
+      anterior = nodo->hijo[SE];
+    }
+    else if (x <= nodo->kx && y > nodo->ky) {
+      anterior = nodo->hijo[NO];
+    }
+    else if (x <= nodo->kx && y <= nodo->ky) {
+      anterior = nodo->hijo[SO];
+    }
+    else {
+        BBNode* node = new BBNode;
+        node->kx=x;
+        node->ky=y;
+        anterior = node;
+        return node;
+    }
 }
 
 void LiberarBiBST(BiBST t) { 
-  // COMPLETAR
+  if (t != NULL) {
+    LiberarBiBST(t->hijo[NE, SE, NO, SO]);
+    delete t;
+  }
 }
 
 //==========================================================================
