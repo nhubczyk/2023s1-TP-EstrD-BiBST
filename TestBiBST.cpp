@@ -7,10 +7,10 @@ using namespace std;
 
 int main() {
     BiBST nodo = new BBNode;
-    int coordenadaX = 2;
-    int coordenadaY = 2;
-    nodo->kx = coordenadaX;
-    nodo->ky = coordenadaY;
+    nodo->kx = 3;
+    nodo->ky = 4;
+    
+    insertBBNode(nodo, 2, 4);
 
-    PrintBB(findBBNode(nodo, 2, 2));  
+    PrintBB(nodo);
 }

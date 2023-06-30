@@ -9,9 +9,17 @@ int main() {
     TableroInfinito nuevoTablero; 
     nuevoTablero = TInfInicial();
 
-    PonerNTInf(nuevoTablero, AZUL, 3);
+    cout << "El nro de bolitas es (0):" << nroBolitasTInf(nuevoTablero, ROJO) << endl;
+    MoverNTInf(nuevoTablero, NORTE, 2);
+    PonerNTInf(nuevoTablero, AZUL, 4);
+    MoverNTInf(nuevoTablero, SUR, 1);
+    cout << "El nro de bolitas es (0):" << nroBolitasTInf(nuevoTablero, AZUL) << endl;
+    PonerNTInf(nuevoTablero, ROJO, 1);
+    cout << "El nro de bolitas es (1):" << nroBolitasTInf(nuevoTablero, ROJO) << endl;
+    MoverNTInf(nuevoTablero, NORTE, 1);
+    cout << "El nro de bolitas es (4):" << nroBolitasTInf(nuevoTablero, AZUL) << endl;
     SacarNTInf(nuevoTablero, AZUL, 1);
-    LiberarTInf(nuevoTablero);
+    cout << "El nro de bolitas es ():" << nroBolitasTInf(nuevoTablero, AZUL) << endl;
 
     PrintRepTInf(nuevoTablero);
 }
