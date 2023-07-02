@@ -19,12 +19,8 @@ struct TableroInfinitoHeader {
 
 typedef TableroInfinitoHeader* TableroInfinito;
 /* INV.REP.:
-    * El cabezal dentro del tablero se representa mediante una coordenada 
-      (x,y).
     * Cada celda dentro del tablero se representa mediante un nodo del arbol
       BiBST.
-    * Cada celda del tablero puede contener como maximo hasta 4 bolitas de
-      4 colores posibles.
 */
 
 //--------------------------------------------------------------------------
@@ -54,8 +50,10 @@ void SacarNTInf(TableroInfinito t, Color color, int n){
   // PRECOND:
   //  * el color es válido
   //  * hay al menos n bolitas en la celda actual en t
-  if (t->celdas->bolitas[color] >= n) {
-    t->celdas->bolitas[color] -= n;
+  BBNode* celdaActual;
+  celdaActual = findBBNode(t->celdas, t->x, t->y);
+  if (celdaActual != NULL && celdaActual->bolitas[color] >= n) {
+    celdaActual->bolitas[color] -= n;
   }else {
     BOOM("No existen la cantidad de bolitas n dadas");
   }
@@ -84,7 +82,7 @@ int nroBolitasTInf(TableroInfinito t, Color color) {
   BBNode* celdaActual;
   celdaActual = findBBNode(t->celdas, t->x, t->y);
   if (celdaActual != NULL) {
-    return (t->celdas->bolitas[color]);
+    return (celdaActual->bolitas[color]);
   }
   else {
     return 0; // La celda esta vacia.     

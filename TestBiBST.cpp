@@ -7,10 +7,15 @@ using namespace std;
 
 int main() {
     BiBST nodo = new BBNode;
-    nodo->kx = 3;
-    nodo->ky = 4;
+    nodo->kx = 1;
+    nodo->ky = 0;
     
-    insertBBNode(nodo, 2, 4);
+    insertBBNode(nodo, 3, 0);
+    insertBBNode(nodo, 4, 0);
+    insertBBNode(nodo, 5, 0);
+    insertBBNode(nodo, 8, 0);
+    insertBBNode(nodo, 4, 1);
+
 
     PrintBB(nodo);
 }

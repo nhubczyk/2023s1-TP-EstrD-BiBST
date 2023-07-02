@@ -50,20 +50,45 @@ BBNode* insertBBNode(BBNode* nodo, int x, int y) {
         node->ky=y;
         return node; 
     }
-    else if (x > nodo->kx && y > nodo->ky) {
-      nodo->hijo[NE] = insertBBNode(nodo->hijo[NE], x, y);
-    }
-    else if (x > nodo->kx && y <= nodo->ky) {
-      nodo->hijo[SE] = insertBBNode(nodo->hijo[SE], x, y);
-    }
-    else if (x <= nodo->kx && y > nodo->ky) {
-      nodo->hijo[NO] = insertBBNode(nodo->hijo[NO], x, y);
-    }
-    else if (x <= nodo->kx && y <= nodo->ky) {
-      nodo->hijo[SO] = insertBBNode(nodo->hijo[SO], x, y);
-    }
-    else if (nodo->kx == x && nodo->ky == y) {
-        return nodo;
+    else {
+      BBNode * nodoAnterior;
+      while(nodo != NULL) {
+        nodoAnterior = nodo;
+        if (nodo->kx == x && nodo->ky == y) {
+          return nodo;
+        }
+        else if (x > nodo->kx && y > nodo->ky) {
+          nodo = nodo->hijo[NE];
+        }
+        else if (x > nodo->kx && y <= nodo->ky) {
+          nodo = nodo->hijo[SE];
+        }
+        else if (x <= nodo->kx && y > nodo->ky) {
+          nodo = nodo->hijo[NO];
+        }
+        else if (x <= nodo->kx && y <= nodo->ky) {
+          nodo = nodo->hijo[SO];
+        }
+      }
+      BBNode* nodoNuevo = new BBNode;
+      nodoNuevo->kx=x;
+      nodoNuevo->ky=y;
+      if (x > nodoAnterior->kx && y > nodoAnterior->ky) {
+        nodoAnterior->hijo[NE] = nodoNuevo;
+        return nodoAnterior->hijo[NE];
+      }
+      else if (x > nodoAnterior->kx && y <= nodoAnterior->ky) {
+        nodoAnterior->hijo[SE] = nodoNuevo;
+        return nodoAnterior->hijo[SE];
+      }
+      else if (x <= nodoAnterior->kx && y > nodoAnterior->ky) {
+        nodoAnterior->hijo[NO] = nodoNuevo;
+        return nodoAnterior->hijo[NO];
+      }
+      else if (x <= nodoAnterior->kx && y <= nodoAnterior->ky) {
+        nodoAnterior->hijo[SO] = nodoNuevo;
+        return nodoAnterior->hijo[SO];
+      }
     }
 }
 
